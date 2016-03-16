@@ -24,8 +24,10 @@
 #' (with the number of statistical units in each file).
 #'  
 #' @examples
+#' \dontrun{
 #' RepoStatus('E30183', DriveLetter = 'Z:', Units = 'Mb', Extended = FALSE, n = 6L)
-#'  
+#' }
+#' 
 #' @include MappingStatus.R 
 #'
 #' @import RepoTime RepoReadWrite StQ data.table

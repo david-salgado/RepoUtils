@@ -32,7 +32,9 @@ format dd/mm/yyyy). If \code{Extended = TRUE}, they also include columns
 \code{RepoStatus} gives information about the Status of the mapped repository.
 }
 \examples{
+\dontrun{
 RepoStatus('E30183', DriveLetter = 'Z:', Units = 'Mb', Extended = FALSE, n = 6L)
- 
+}
+
 }
 
