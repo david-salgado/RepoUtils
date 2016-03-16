@@ -2,23 +2,29 @@
 % Please edit documentation in R/MappingStatus.R
 \name{MappingStatus}
 \alias{MappingStatus}
-\title{Detect if a statistical operation is mapped}
+\title{Detect if the directory of a statistical operation is mapped}
 \usage{
 MappingStatus(SurveyCode, DriveLetter = "Z:")
 }
 \arguments{
-\item{SurveyCode}{is an array with the name of the statistical operation.}
+\item{SurveyCode}{Character vector of length 1 with the IOE code of the 
+statistical operation.}
 
-\item{DriveLetter}{is an array with the letter of the drive.}
+\item{DriveLetter}{Character vector of length 1 with the letter of the 
+logical drive under the common syntax [A-Z]?:.}
 }
 \value{
-A Boolean value (TRUE/FALSE).
+It returns a logical vector of length 1.
 }
 \description{
-\code{MappingStatus} detects if the statistical operation SurveyCode is or not mapped into the Drive DriveLetter.
+\code{MappingStatus} detects whether the directory of the 
+statistical operation with IOE code SurveyCode is mapped into the logical
+drive DriveLetter or not.
 }
 \examples{
-MappingStatus('E30183','Z:')
+\dontrun{
+MappingStatus('E30183', 'Z:')
+}
 
 }
 

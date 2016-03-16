@@ -6,17 +6,19 @@
 #' statistical operation with IOE code SurveyCode is mapped into the logical
 #' drive DriveLetter or not.
 #'
-#' @param SurveyCode is a character vector of length 1 with the IOE code of the 
+#' @param SurveyCode Character vector of length 1 with the IOE code of the 
 #' statistical operation.
 #'
-#' @param DriveLetter is a character vector of length 1 with the letter of the 
+#' @param DriveLetter Character vector of length 1 with the letter of the 
 #' logical drive under the common syntax [A-Z]?:.
 #'
-#' @return A logical vector of length 1.
+#' @return It returns a logical vector of length 1.
 #'
 #' @examples
-#' MappingStatus('E30183','Z:')
-#'
+#' \dontrun{
+#' MappingStatus('E30183', 'Z:')
+#' }
+#' 
 #' @export
 MappingStatus <- function(SurveyCode, DriveLetter = 'Z:'){
 

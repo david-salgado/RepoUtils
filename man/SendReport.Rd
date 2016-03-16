@@ -7,21 +7,37 @@
 SendReport(SurveyCode, To, n = 6L, Extended = FALSE, Units = "Mb")
 }
 \arguments{
-\item{SurveyCode}{is an array with the name of the statistical operation.}
+\item{SurveyCode}{is a character vector of length 1 with the IOE code of the 
+statistical operation.}
 
-\item{To}{is an array with the destination email address.}
+\item{To}{is a character vector of length 1 with the recipient email address.}
 
-\item{n}{is an integer that informs about the number of shown rows in the output.}
+\item{n}{is an integer vector of lenght 1 specifying the number of rows to be
+included in the output.}
 
-\item{Extended}{is an Boolean that takes TRUE value if a more extended output is desired.}
+\item{Extended}{is a logical vector of length 1 specifying whether a more 
+extended output is to be produced.}
 
-\item{Units}{is an array that tells about the units shown in the output.}
+\item{Units}{is a character vector of length 1 specifying the information 
+measure units to be used in the report (default value: 'Mb')}
+}
+\value{
+It returns the shell response to the execution of smtpmail.exe.
 }
 \description{
-\code{SendReport} sends a report to an email address containing information about the repository state.
+\code{SendReport} sends a report to an email address containing 
+information about the contents of a directory of the microdata repository.
+}
+\details{
+The executable smtpmail.exe must be in the working directory, 
+otherwise an error is triggered. This executable together with a necessary
+dll library are provided by the methodology unit.
 }
 \examples{
+\dontrun{
 SendReport('E30183', 'email@example.com', n = 6L, Extended = FALSE, Units = 'Mb')
- 
+}
+
+
 }
 

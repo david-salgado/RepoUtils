@@ -9,14 +9,21 @@
 #' A password is needed. This password is provided by the methodology unit to 
 #' the head of unit of the statistical operation.
 #'
-#' @param SurveyCode is a character vector of length 1 with the IOE code of the 
+#' @param SurveyCode Character vector of length 1 with the IOE code of the 
 #' statistical operation.
 #'
-#' @param DriveLetter is a character vector of length 1 specifying the logical 
+#' @param DriveLetter Character vector of length 1 specifying the logical 
 #' drive by the common syntax [A-Z]?:.
 #'
-#' @param Password is a character vector of length 1.
+#' @param PassWord Character vector of length 1.
 #'
+#' @return It returns either an error if the mapping is impossible or an 
+#' invisible \code{NULL}.
+#' 
+#' @details The executable MapDrive.exe must be in the working directory, 
+#' otherwise an error is triggered. This executable is provided by the 
+#' methodology unit.
+#' 
 #' @examples
 #' \dontrun{
 #' MapDrive('E30183', 'Z:', 'xxxxxxxx')

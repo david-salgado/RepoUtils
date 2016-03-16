@@ -4,13 +4,17 @@
 \alias{UnMapDrive}
 \title{Unmap a statistical operation}
 \usage{
-UnMapDrive(DriveLetter = "Z:")
+UnMapDrive(DriveLetter = "Z:", force = FALSE)
 }
 \arguments{
-\item{DriveLetter}{is an array with the letter of the drive.}
+\item{DriveLetter}{Character vector of length 1 with the letter of the 
+logical drive.}
+
+\item{force}{Logical vector of length 1 specifying whether to force the
+unmapping or not (default value: FALSE)}
 }
 \description{
-\code{UnMapDrive} unmaps a drive with its statistical operations.
+\code{UnMapDrive} unmaps a logical drive.
 }
 \examples{
 UnMapDrive('Z:')

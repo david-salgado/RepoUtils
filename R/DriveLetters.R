@@ -5,7 +5,7 @@
 #' @description \code{DriveLetters} returns a character vector with the letters 
 #' of the logical drives in use.
 #'
-#' @return Returns a character vector with components [A-Z]?:.
+#' @return It returns a character vector with components [A-Z]?:.
 #'
 #' @examples
 #' DriveLetters()

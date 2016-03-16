@@ -18,6 +18,13 @@
 #' 
 #' @param Units is a character vector of length 1 specifying the information 
 #' measure units to be used in the report (default value: 'Mb')
+#'
+#' @return It returns the shell response to the execution of smtpmail.exe.
+#'  
+#' @details The executable smtpmail.exe must be in the working directory, 
+#' otherwise an error is triggered. This executable together with a necessary
+#' dll library are provided by the methodology unit.  
+#'  
 #'  
 #' @examples
 #' \dontrun{

@@ -7,10 +7,11 @@
 DriveLetters()
 }
 \value{
-Return an array.
+It returns a character vector with components [A-Z]?:.
 }
 \description{
-\code{DriveLetters} gives an array with the letters of the used computer drives.
+\code{DriveLetters} returns a character vector with the letters 
+of the logical drives in use.
 }
 \examples{
 DriveLetters()

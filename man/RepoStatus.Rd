@@ -18,6 +18,16 @@ RepoStatus(SurveyCode, DriveLetter = "Z:", Units = "Mb", Extended = FALSE,
 
 \item{n}{is an integer that informs about the number of shown rows in the output.}
 }
+\value{
+It returns a list of \linkS4class{data.table}s for each type of file
+in the repository with columns \code{File} (name of the file), 
+\code{Reference} (time period of reference in the repository notation), 
+\code{Size} (in the specified units), \code{Created} (date of creation in 
+format dd/mm/yyyy) and \code{Last accessed} (date of of last accession in
+format dd/mm/yyyy). If \code{Extended = TRUE}, they also include columns 
+\code{Rows} (the number of rows, except the first line) and \code{Units} 
+(with the number of statistical units in each file).
+}
 \description{
 \code{RepoStatus} gives information about the Status of the mapped repository.
 }
