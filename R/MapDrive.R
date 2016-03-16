@@ -19,7 +19,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' MapDrive('E30183','Z:','xxxxxxxx')
+#' MapDrive('E30183', 'Z:', 'xxxxxxxx')
 #' }
 #' 
 #' @importFrom R.utils intToBin

@@ -20,8 +20,11 @@
 #' measure units to be used in the report (default value: 'Mb')
 #'  
 #' @examples
+#' \dontrun{
 #' SendReport('E30183', 'email@example.com', n = 6L, Extended = FALSE, Units = 'Mb')
-#'  
+#'}
+#'
+#'
 #' @include MappingStatus.R RepoStatus.R
 #'
 #' @import R2HTML StQ
