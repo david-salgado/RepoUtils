@@ -1,0 +1,28 @@
+Package: RepoUtils
+Title: Implementation of tools to map and work with repositories
+Version: 0.1.0
+Author: David Salgado
+Maintainer: David Salgado <david.salgado.fernandez@ine.es>
+Description: This package implements tools to map and unmap directories of  
+    Statistics Spain repository microdata and other useful related tools
+Depends:
+    R (>= 3.2.0),
+    methods
+Imports:
+    RepoTime (>= 0.1),
+    RepoReadWrite (>= 0.1),
+    StQ (>= 0.1),
+    data.table (>= 1.9.3),
+    xlsx (>= 0.5.7),
+    R.utils (>= 2.2.0),
+    R2HTML (>= 2.3.1)
+License: file LICENSE
+LazyData: true
+Collate:
+    'DriveLetters.R'
+    'MappingStatus.R'
+    'MapDrive.R'
+    'RepoStatus.R'
+    'SendReport.R'
+    'UnMapDrive.R'
+RoxygenNote: 5.0.1
