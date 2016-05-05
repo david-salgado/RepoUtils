@@ -2,21 +2,26 @@
 % Please edit documentation in R/RepoStatus.R
 \name{RepoStatus}
 \alias{RepoStatus}
-\title{Repository Status}
+\title{Report status of the repository}
 \usage{
 RepoStatus(SurveyCode, DriveLetter = "Z:", Units = "Mb", Extended = FALSE,
   n = 6L)
 }
 \arguments{
-\item{SurveyCode}{is an array with the name of the statistical operation.}
+\item{SurveyCode}{Charcter vector of length 1 with the code of the 
+statistical operation.}
 
-\item{DriveLetter}{is an array with the letter of the drive.}
+\item{DriveLetter}{Character vector of length 1 with the letter of the 
+logical drive (default value \code{Z:}).}
 
-\item{Units}{is an array that tells about the units shown in the output.}
+\item{Units}{Character vector length 1 with the information unit measure to 
+use (default value \code{Mb}).}
 
-\item{Extended}{is an Boolean that takes TRUE value if a more extended output is desired.}
+\item{Extended}{Logical vector of length 1 expresing whether an extended 
+report muest be produced or not.}
 
-\item{n}{is an integer that informs about the number of shown rows in the output.}
+\item{n}{Integer vector of length 1 with the number of files (backwards in 
+time sequence) to report about.}
 }
 \value{
 It returns a list of \linkS4class{data.table}s for each type of file
@@ -29,7 +34,8 @@ format dd/mm/yyyy). If \code{Extended = TRUE}, they also include columns
 (with the number of statistical units in each file).
 }
 \description{
-\code{RepoStatus} gives information about the Status of the mapped repository.
+\code{RepoStatus} gives information about the Status of the 
+mapped repository.
 }
 \examples{
 \dontrun{

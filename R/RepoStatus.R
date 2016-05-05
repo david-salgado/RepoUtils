@@ -1,18 +1,22 @@
-#' @name RepoStatus
+#' @title Report status of the repository 
 #' 
-#' @title Repository Status 
+#' @description \code{RepoStatus} gives information about the Status of the 
+#' mapped repository.
 #' 
-#' @description \code{RepoStatus} gives information about the Status of the mapped repository.
-#' 
-#' @param SurveyCode is an array with the name of the statistical operation.
+#' @param SurveyCode Charcter vector of length 1 with the code of the 
+#' statistical operation.
 #'
-#' @param DriveLetter is an array with the letter of the drive.
+#' @param DriveLetter Character vector of length 1 with the letter of the 
+#' logical drive (default value \code{Z:}).
 #' 
-#' @param Units is an array that tells about the units shown in the output.
+#' @param Units Character vector length 1 with the information unit measure to 
+#' use (default value \code{Mb}).
 #' 
-#' @param Extended is an Boolean that takes TRUE value if a more extended output is desired.
+#' @param Extended Logical vector of length 1 expresing whether an extended 
+#' report muest be produced or not.
 #'
-#' @param n is an integer that informs about the number of shown rows in the output. 
+#' @param n Integer vector of length 1 with the number of files (backwards in 
+#' time sequence) to report about. 
 #' 
 #' @return It returns a list of \linkS4class{data.table}s for each type of file
 #' in the repository with columns \code{File} (name of the file), 
