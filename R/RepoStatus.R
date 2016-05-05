@@ -31,8 +31,6 @@
 #' @include MappingStatus.R 
 #'
 #' @import RepoTime RepoReadWrite StQ data.table
-#' 
-#' @importFrom xlsx read.xlsx2
 #'   
 #' @export
 RepoStatus <- function(SurveyCode, 
@@ -146,17 +144,29 @@ RepoStatus <- function(SurveyCode,
 
   if (Extended){
     
-    XLS <- read.xlsx2(paste0(DriveLetter, '/', SurveyCode, '.NombresVariables.xlsx'), 
-                      sheetName = 'MicroData',
-                      stringsAsFactors = FALSE)
-    XLS <- as.data.table(XLS)
-    VNC <- new(Class = 'VarNameCorresp', VarNameCorresp = list(MicroData = XLS))
-
-    RepoDD <- ReadRepoFile(paste0(DriveLetter, output[['DD']]$File[1]))
-    DD <- RepoDDToDD(RepoDD, VNC, DDslot = 'MicroData')
+    #XLS <- read.xlsx2(paste0(DriveLetter, '/', SurveyCode, '.NombresVariables.xlsx'), 
+    #                  sheetName = 'MicroData',
+    #                  stringsAsFactors = FALSE)
+    #XLS <- as.data.table(XLS)
+    #VNC <- new(Class = 'VarNameCorresp', VarNameCorresp = list(MicroData = XLS))
     
-    for (Type in setdiff(names(output), c('DD', 'NombresVariables'))){
+    #####                       LEER HOJAS DE EXCEL                            #####
+    ExcelName <- paste0(DriveLetter, '/', SurveyCode, '.NombresVariables.xlsx')
+    wb <- xlsx::loadWorkbook(ExcelName)
+    SheetNames <- names(xlsx::getSheets(wb))
+    SheetNames <- SheetNames[SheetNames %in% c('ID', 'MicroData', 'ParaData')]
+    VNC <- RepoXLSToVNC(ExcelName, SheetNames)
+    
+    RepoDD <- ReadRepoFile(paste0(DriveLetter, output[['DD']]$File[1]))
+    DD <- list()
+    for (DDslot in SheetNames){
       
+      DD[[DDslot]] <- RepoDDToDD(RepoDD, VNC, DDslot = DDslot)
+      
+    }
+    DD <- Reduce(`+`, DD, DD[[1L]])
+  
+    for (Type in setdiff(names(output), c('DD', 'NombresVariables'))){
       
       if (Type %in% c('FF', 'FD', 'FG')){
         Rows <- c()
@@ -166,7 +176,7 @@ RepoStatus <- function(SurveyCode,
           Data <- ReadRepoFile(paste0(DriveLetter, output[[Type]]$File[i]))
           Rows <- c(Rows, dim(Data)[1])
           names(Data)[length(names(Data))] <- paste("Value")
-          auxStQ <- new(Class = 'StQ', Data = Data, DD = DD)
+          auxStQ <- new(Class = 'StQ', Data = new(Class = 'Datadt', Data), DD = DD)
           nUnits <- dim(getUnits(auxStQ))[1]
           Units <- c(Units, nUnits)
         }
