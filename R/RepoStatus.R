@@ -166,10 +166,10 @@ RepoStatus <- function(SurveyCode,
         Units <- c()
         for (i in seq(along = output[[Type]]$File)){
           cat(paste0('Reading file ', output[[Type]]$File[i]), '\n')
-          auxrawStQ <- ReadRepoFile(paste0(DriveLetter, output[[Type]]$File[i]), DD, out = 'rawStQ', perl = TRUE)
-          nRows <- dim(auxrawStQ)[[1]]
+          auxStQ <- ReadRepoFile(paste0(DriveLetter, output[[Type]]$File[i]), DD, perl = TRUE)
+          nRows <- dim(auxStQ)[[1]]
           Rows <- c(Rows, nRows)
-          nUnits <- dim(getUnits(auxrawStQ))[1]
+          nUnits <- dim(getUnits(auxStQ))[1]
           Units <- c(Units, nUnits)
         }
         output[[Type]][['Rows']] <- Rows
