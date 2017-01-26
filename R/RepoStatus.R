@@ -34,7 +34,7 @@
 #' 
 #' @include MappingStatus.R 
 #'
-#' @import RepoTime RepoReadWrite StQ data.table
+#' @import RepoTime RepoReadWrite StQ data.table xlsx
 #'   
 #' @export
 RepoStatus <- function(SurveyCode, 
@@ -96,8 +96,9 @@ RepoStatus <- function(SurveyCode,
       }
       
       else if (Type == 'ParamFL'){
+        
         x <- output[[Type]]
-        index <- grep('CentRad', x$File, fixed = TRUE)
+        index <- grep('ParamFL', x$File, fixed = TRUE)
         auxSplit <- strsplit(x$File[index], '.', fixed = TRUE)
         auxSplit <- unlist(lapply(auxSplit, '[', 4))
         x$Reference[index] <- auxSplit
@@ -106,6 +107,7 @@ RepoStatus <- function(SurveyCode,
         lubriInterval <- RepoTimeTolubri(output[[Type]][['Reference']])
         startRef <- unlist(lapply(lubriInterval, slot, 'start'))
         RefOrder <- order(startRef, decreasing = TRUE)
+        
       }
       else if (Type == 'FT') {
         
@@ -116,6 +118,7 @@ RepoStatus <- function(SurveyCode,
         lubriInterval <- RepoTimeTolubri(output[[Type]][['Reference']])
         startRef <- unlist(lapply(lubriInterval, slot, 'start'))
         RefOrder <- order(startRef, decreasing = TRUE)
+        
       } 
       else if (Type == 'NombresVariables') {
         
@@ -137,7 +140,7 @@ RepoStatus <- function(SurveyCode,
       localFileNames <- output[[Type]][['File']]
       auxFileInfo <- file.info(paste0(DriveLetter, '/', localFileNames))[, c('size', 'ctime', 'atime')]
 
-      output[[Type]][, c('size', 'ctime', 'atime') := auxFileInfo, with = FALSE] 
+      output[[Type]][, c('size', 'ctime', 'atime') := auxFileInfo] 
       
       output[[Type]][['size']] <- round(output[[Type]][['size']] / UnitConvFactor, 1)
       
@@ -148,62 +151,25 @@ RepoStatus <- function(SurveyCode,
 
   if (Extended){
     
-    #XLS <- read.xlsx2(paste0(DriveLetter, '/', SurveyCode, '.NombresVariables.xlsx'), 
-    #                  sheetName = 'MicroData',
-    #                  stringsAsFactors = FALSE)
-    #XLS <- as.data.table(XLS)
-    #VNC <- new(Class = 'VarNameCorresp', VarNameCorresp = list(MicroData = XLS))
-    
     #####                       LEER HOJAS DE EXCEL                            #####
-    ExcelName <- paste0(DriveLetter, '/', SurveyCode, '.NombresVariables.xlsx')
-    wb <- xlsx::loadWorkbook(ExcelName)
-    SheetNames <- names(xlsx::getSheets(wb))
-    SheetNames <- SheetNames[SheetNames %in% c('ID', 'MicroData', 'ParaData')]
-    VNC <- RepoXLSToVNC(ExcelName, SheetNames)
     
-    RepoDD <- ReadRepoFile(paste0(DriveLetter, output[['DD']]$File[1]))
-    DD <- list()
-    for (DDslot in SheetNames){
-      
-      DD[[DDslot]] <- RepoDDToDD(RepoDD, VNC, DDslot = DDslot)
-      
-    }
-    DD <- Reduce(`+`, DD, DD[[1L]])
-  
+    ExcelNames <- FileNames[grep('NombresVariables', FileNames, fixed = TRUE)]
+    ExcelVersions <- lapply(ExcelNames, function(Name){strsplit(Name, split = '_V', fixed = TRUE)[[1]][2]})
+    ExcelVersions <- lapply(ExcelVersions, function(x){strsplit(x, split = '.', fixed = TRUE)[[1]][1]})
+    ExcelName <- paste0(DriveLetter, '/', ExcelNames[which.max(ExcelVersions)])
+    DD <- RepoXLSToDD(ExcelName)
+
     for (Type in setdiff(names(output), c('DD', 'NombresVariables'))){
       
-      if (Type %in% c('FF', 'FD', 'FG')){
+      if (Type %in% c('FF', 'FD', 'FG', 'FL', 'FT')){
         Rows <- c()
         Units <- c()
         for (i in seq(along = output[[Type]]$File)){
           cat(paste0('Reading file ', output[[Type]]$File[i]), '\n')
-          Data <- ReadRepoFile(paste0(DriveLetter, output[[Type]]$File[i]))
-          Rows <- c(Rows, dim(Data)[1])
-          names(Data)[length(names(Data))] <- paste("Value")
-          auxStQ <- new(Class = 'StQ', Data = new(Class = 'Datadt', Data), DD = DD)
-          nUnits <- dim(getUnits(auxStQ))[1]
-          Units <- c(Units, nUnits)
-        }
-        output[[Type]][['Rows']] <- Rows
-        output[[Type]][['Units']] <- Units
-      }
-      
-      if (Type %in% c('FL', 'FT')){
-        Rows <- c()
-        Units <- c()
-        for (i in seq(along = output[[Type]]$File)){
-          cat(paste0('Reading file ', output[[Type]]$File[i]), '\n')
-          Data <- ReadRepoFile(paste0(DriveLetter, output[[Type]]$File[i]))
-          Rows <- c(Rows, dim(Data)[1])
-          RestColNames <- setdiff(names(Data), c('Mes', 'Month', 
-                                                 'NomControl', 'EditName', 
-                                                 'Condicion', 'Condition', 
-                                                 'LimInf', 'LowBound',
-                                                 'LimSup', 'UppBound'))
-          nUnits <- Data[, RestColNames, with = FALSE]
-          setkeyv(nUnits, names(nUnits))
-          nUnits <- nUnits[!duplicated(nUnits)]
-          nUnits <- dim(nUnits)[1]
+          auxrawStQ <- ReadRepoFile(paste0(DriveLetter, output[[Type]]$File[i]), DD, out = 'rawStQ', perl = TRUE)
+          nRows <- dim(auxrawStQ)[[1]]
+          Rows <- c(Rows, nRows)
+          nUnits <- dim(getUnits(auxrawStQ))[1]
           Units <- c(Units, nUnits)
         }
         output[[Type]][['Rows']] <- Rows

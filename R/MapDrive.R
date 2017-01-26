@@ -51,11 +51,6 @@ MapDrive <- function(SurveyCode, DriveLetter = 'Z:', PassWord){
     stop('[MapDrive] DriveLetter must have the syntax A:, B:, C:, etc.')
     
   }
-  if (!file.exists(paste0(getwd(), '/mapdrive.exe'))) {
-    
-    stop('[MapDrive] The executable program MapDrive.exe is not in the working directory.')
-    
-  }
   if (MappingStatus(SurveyCode, DriveLetter)) {
     
     cat(paste0('The logical drive ', 
