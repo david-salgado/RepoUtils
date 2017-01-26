@@ -9,10 +9,10 @@ Depends:
     R (>= 3.2.0),
     methods
 Imports:
-    RepoTime (>= 0.1),
-    RepoReadWrite (>= 0.1),
-    StQ (>= 0.1),
-    data.table (>= 1.9.3),
+    RepoTime (>= 0.2.0),
+    RepoReadWrite (>= 0.3.3),
+    StQ (>= 0.3.5),
+    data.table (>= 1.10.0),
     xlsx (>= 0.5.7),
     R.utils (>= 2.2.0),
     R2HTML (>= 2.3.1)
