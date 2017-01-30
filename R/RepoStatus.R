@@ -1,18 +1,22 @@
-#' @name RepoStatus
+#' @title Report status of the repository 
 #' 
-#' @title Repository Status 
+#' @description \code{RepoStatus} gives information about the Status of the 
+#' mapped repository.
 #' 
-#' @description \code{RepoStatus} gives information about the Status of the mapped repository.
-#' 
-#' @param SurveyCode is an array with the name of the statistical operation.
+#' @param SurveyCode Charcter vector of length 1 with the code of the 
+#' statistical operation.
 #'
-#' @param DriveLetter is an array with the letter of the drive.
+#' @param DriveLetter Character vector of length 1 with the letter of the 
+#' logical drive (default value \code{Z:}).
 #' 
-#' @param Units is an array that tells about the units shown in the output.
+#' @param Units Character vector length 1 with the information unit measure to 
+#' use (default value \code{Mb}).
 #' 
-#' @param Extended is an Boolean that takes TRUE value if a more extended output is desired.
+#' @param Extended Logical vector of length 1 expresing whether an extended 
+#' report muest be produced or not.
 #'
-#' @param n is an integer that informs about the number of shown rows in the output. 
+#' @param n Integer vector of length 1 with the number of files (backwards in 
+#' time sequence) to report about. 
 #' 
 #' @return It returns a list of \linkS4class{data.table}s for each type of file
 #' in the repository with columns \code{File} (name of the file), 
@@ -30,9 +34,7 @@
 #' 
 #' @include MappingStatus.R 
 #'
-#' @import RepoTime RepoReadWrite StQ data.table
-#' 
-#' @importFrom xlsx read.xlsx2
+#' @import RepoTime RepoReadWrite StQ data.table xlsx
 #'   
 #' @export
 RepoStatus <- function(SurveyCode, 
@@ -94,8 +96,9 @@ RepoStatus <- function(SurveyCode,
       }
       
       else if (Type == 'ParamFL'){
+        
         x <- output[[Type]]
-        index <- grep('CentRad', x$File, fixed = TRUE)
+        index <- grep('ParamFL', x$File, fixed = TRUE)
         auxSplit <- strsplit(x$File[index], '.', fixed = TRUE)
         auxSplit <- unlist(lapply(auxSplit, '[', 4))
         x$Reference[index] <- auxSplit
@@ -104,6 +107,7 @@ RepoStatus <- function(SurveyCode,
         lubriInterval <- RepoTimeTolubri(output[[Type]][['Reference']])
         startRef <- unlist(lapply(lubriInterval, slot, 'start'))
         RefOrder <- order(startRef, decreasing = TRUE)
+        
       }
       else if (Type == 'FT') {
         
@@ -114,6 +118,7 @@ RepoStatus <- function(SurveyCode,
         lubriInterval <- RepoTimeTolubri(output[[Type]][['Reference']])
         startRef <- unlist(lapply(lubriInterval, slot, 'start'))
         RefOrder <- order(startRef, decreasing = TRUE)
+        
       } 
       else if (Type == 'NombresVariables') {
         
@@ -135,7 +140,7 @@ RepoStatus <- function(SurveyCode,
       localFileNames <- output[[Type]][['File']]
       auxFileInfo <- file.info(paste0(DriveLetter, '/', localFileNames))[, c('size', 'ctime', 'atime')]
 
-      output[[Type]][, c('size', 'ctime', 'atime') := auxFileInfo, with = FALSE] 
+      output[[Type]][, c('size', 'ctime', 'atime') := auxFileInfo] 
       
       output[[Type]][['size']] <- round(output[[Type]][['size']] / UnitConvFactor, 1)
       
@@ -146,50 +151,25 @@ RepoStatus <- function(SurveyCode,
 
   if (Extended){
     
-    XLS <- read.xlsx2(paste0(DriveLetter, '/', SurveyCode, '.NombresVariables.xlsx'), 
-                      sheetName = 'MicroData',
-                      stringsAsFactors = FALSE)
-    XLS <- as.data.table(XLS)
-    VNC <- new(Class = 'VarNameCorresp', VarNameCorresp = list(MicroData = XLS))
-
-    RepoDD <- ReadRepoFile(paste0(DriveLetter, output[['DD']]$File[1]))
-    DD <- RepoDDToDD(RepoDD, VNC, DDslot = 'MicroData')
+    #####                       LEER HOJAS DE EXCEL                            #####
     
+    ExcelNames <- FileNames[grep('NombresVariables', FileNames, fixed = TRUE)]
+    ExcelVersions <- lapply(ExcelNames, function(Name){strsplit(Name, split = '_V', fixed = TRUE)[[1]][2]})
+    ExcelVersions <- lapply(ExcelVersions, function(x){strsplit(x, split = '.', fixed = TRUE)[[1]][1]})
+    ExcelName <- paste0(DriveLetter, '/', ExcelNames[which.max(ExcelVersions)])
+    DD <- RepoXLSToDD(ExcelName)
+
     for (Type in setdiff(names(output), c('DD', 'NombresVariables'))){
       
-      
-      if (Type %in% c('FF', 'FD', 'FG')){
+      if (Type %in% c('FF', 'FD', 'FG', 'FL', 'FT')){
         Rows <- c()
         Units <- c()
         for (i in seq(along = output[[Type]]$File)){
           cat(paste0('Reading file ', output[[Type]]$File[i]), '\n')
-          Data <- ReadRepoFile(paste0(DriveLetter, output[[Type]]$File[i]))
-          Rows <- c(Rows, dim(Data)[1])
-          names(Data)[length(names(Data))] <- paste("Value")
-          auxStQ <- new(Class = 'StQ', Data = Data, DD = DD)
+          auxStQ <- ReadRepoFile(paste0(DriveLetter, output[[Type]]$File[i]), DD, perl = TRUE)
+          nRows <- dim(auxStQ)[[1]]
+          Rows <- c(Rows, nRows)
           nUnits <- dim(getUnits(auxStQ))[1]
-          Units <- c(Units, nUnits)
-        }
-        output[[Type]][['Rows']] <- Rows
-        output[[Type]][['Units']] <- Units
-      }
-      
-      if (Type %in% c('FL', 'FT')){
-        Rows <- c()
-        Units <- c()
-        for (i in seq(along = output[[Type]]$File)){
-          cat(paste0('Reading file ', output[[Type]]$File[i]), '\n')
-          Data <- ReadRepoFile(paste0(DriveLetter, output[[Type]]$File[i]))
-          Rows <- c(Rows, dim(Data)[1])
-          RestColNames <- setdiff(names(Data), c('Mes', 'Month', 
-                                                 'NomControl', 'EditName', 
-                                                 'Condicion', 'Condition', 
-                                                 'LimInf', 'LowBound',
-                                                 'LimSup', 'UppBound'))
-          nUnits <- Data[, RestColNames, with = FALSE]
-          setkeyv(nUnits, names(nUnits))
-          nUnits <- nUnits[!duplicated(nUnits)]
-          nUnits <- dim(nUnits)[1]
           Units <- c(Units, nUnits)
         }
         output[[Type]][['Rows']] <- Rows

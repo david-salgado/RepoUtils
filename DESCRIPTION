@@ -1,6 +1,6 @@
 Package: RepoUtils
 Title: Implementation of tools to map and work with repositories
-Version: 0.1.0
+Version: 0.1.2
 Author: David Salgado
 Maintainer: David Salgado <david.salgado.fernandez@ine.es>
 Description: This package implements tools to map and unmap directories of  
@@ -9,9 +9,9 @@ Depends:
     R (>= 3.2.0),
     methods
 Imports:
-    RepoTime (>= 0.1),
-    RepoReadWrite (>= 0.1),
-    StQ (>= 0.1),
+    RepoTime (>= 0.2.0),
+    RepoReadWrite (>= 0.3.3),
+    StQ (>= 0.3.5),
     data.table (>= 1.10.0),
     xlsx (>= 0.5.7),
     R.utils (>= 2.2.0),

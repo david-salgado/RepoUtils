@@ -25,7 +25,6 @@ MappingStatus <- function(SurveyCode, DriveLetter = 'Z:'){
   if (! (is.character(SurveyCode) && length(SurveyCode) == 1)) stop('[MapDrive] Only one statistical operation is allowed. SurveyCode must be a character vector of length 1.\n')
   if (! (is.character(DriveLetter) && length(SurveyCode) == 1)) stop('[MapDrive] Only one logical drive is allowed. DriveLetter must be a character vector of length 1.\n')
   if (!DriveLetter %in% paste0(LETTERS, ':')) stop('[MapDrive] DriveLetter must have the syntax A:, B:, C:, etc.')
-  if (!file.exists(paste0(getwd(), '/mapdrive.exe'))) stop('[MapDrive] The executable program MapDrive.exe is not in the working directory.')
   outShell <- shell('net use', mustWork = TRUE, intern = TRUE)
   indexRowbyDriveLetter <- which(grepl(DriveLetter, outShell))
   indexRowbySurveyCode <- which(grepl(SurveyCode, outShell))
