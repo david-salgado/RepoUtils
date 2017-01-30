@@ -12,7 +12,7 @@ Imports:
     RepoTime (>= 0.1),
     RepoReadWrite (>= 0.1),
     StQ (>= 0.1),
-    data.table (>= 1.9.3),
+    data.table (>= 1.10.0),
     xlsx (>= 0.5.7),
     R.utils (>= 2.2.0),
     R2HTML (>= 2.3.1)
