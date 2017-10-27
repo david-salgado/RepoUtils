@@ -7,19 +7,17 @@
 MappingStatus(SurveyCode, DriveLetter = "Z:")
 }
 \arguments{
-\item{SurveyCode}{Character vector of length 1 with the IOE code of the 
-statistical operation.}
+\item{SurveyCode}{Character vector of length 1 with the IOE code of the statistical operation.}
 
-\item{DriveLetter}{Character vector of length 1 with the letter of the 
-logical drive under the common syntax [A-Z]?:.}
+\item{DriveLetter}{Character vector of length 1 with the letter of the logical drive under the
+common syntax [A-Z]?:.}
 }
 \value{
 It returns a logical vector of length 1.
 }
 \description{
-\code{MappingStatus} detects whether the directory of the 
-statistical operation with IOE code SurveyCode is mapped into the logical
-drive DriveLetter or not.
+\code{MappingStatus} detects whether the directory of the statistical operation with
+IOE code SurveyCode is mapped into the logical drive DriveLetter or not.
 }
 \examples{
 \dontrun{
@@ -27,4 +25,3 @@ MappingStatus('E30183', 'Z:')
 }
 
 }
-

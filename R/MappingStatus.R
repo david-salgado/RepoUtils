@@ -2,15 +2,13 @@
 #'
 #' @title  Detect if the directory of a statistical operation is mapped
 #'
-#' @description \code{MappingStatus} detects whether the directory of the 
-#' statistical operation with IOE code SurveyCode is mapped into the logical
-#' drive DriveLetter or not.
+#' @description \code{MappingStatus} detects whether the directory of the statistical operation with
+#' IOE code SurveyCode is mapped into the logical drive DriveLetter or not.
 #'
-#' @param SurveyCode Character vector of length 1 with the IOE code of the 
-#' statistical operation.
+#' @param SurveyCode Character vector of length 1 with the IOE code of the statistical operation.
 #'
-#' @param DriveLetter Character vector of length 1 with the letter of the 
-#' logical drive under the common syntax [A-Z]?:.
+#' @param DriveLetter Character vector of length 1 with the letter of the logical drive under the
+#' common syntax [A-Z]?:.
 #'
 #' @return It returns a logical vector of length 1.
 #'

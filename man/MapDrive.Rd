@@ -7,30 +7,26 @@
 MapDrive(SurveyCode, DriveLetter = "Z:", PassWord)
 }
 \arguments{
-\item{SurveyCode}{Character vector of length 1 with the IOE code of the 
-statistical operation.}
+\item{SurveyCode}{Character vector of length 1 with the IOE code of the statistical operation.}
 
-\item{DriveLetter}{Character vector of length 1 specifying the logical 
-drive by the common syntax [A-Z]?:.}
+\item{DriveLetter}{Character vector of length 1 specifying the logical drive by the common syntax
+[A-Z]?:.}
 
 \item{PassWord}{Character vector of length 1.}
 }
 \value{
-It returns either an error if the mapping is impossible or an 
-invisible \code{NULL}.
+It returns either an error if the mapping is impossible or an invisible \code{NULL}.
 }
 \description{
-\code{MapDrive} maps a directory of the microdata repository 
-corresponding to a statistical operation with IOE code SurveyCode into the 
-logical drive DriveLetter.
+\code{MapDrive} maps a directory of the microdata repository corresponding to a
+statistical operation with IOE code SurveyCode into the logical drive DriveLetter.
 
-A password is needed. This password is provided by the methodology unit to 
-the head of unit of the statistical operation.
+A password is needed. This password is provided by the methodology unit to the head of unit of
+the statistical operation.
 }
 \details{
-The executable MapDrive.exe must be in the working directory, 
-otherwise an error is triggered. This executable is provided by the 
-methodology unit.
+The executable MapDrive.exe must be in the working directory, otherwise an error is
+triggered. This executable is provided by the methodology unit.
 }
 \examples{
 \dontrun{
@@ -38,4 +34,3 @@ MapDrive('E30183', 'Z:', 'xxxxxxxx')
 }
 
 }
-

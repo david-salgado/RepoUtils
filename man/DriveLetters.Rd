@@ -10,11 +10,10 @@ DriveLetters()
 It returns a character vector with components [A-Z]?:.
 }
 \description{
-\code{DriveLetters} returns a character vector with the letters 
-of the logical drives in use.
+\code{DriveLetters} returns a character vector with the letters of the logical
+drives in use.
 }
 \examples{
 DriveLetters()
 
 }
-

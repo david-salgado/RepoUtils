@@ -7,11 +7,10 @@
 UnMapDrive(DriveLetter = "Z:", force = FALSE)
 }
 \arguments{
-\item{DriveLetter}{Character vector of length 1 with the letter of the 
-logical drive.}
+\item{DriveLetter}{Character vector of length 1 with the letter of the logical drive.}
 
-\item{force}{Logical vector of length 1 specifying whether to force the
-unmapping or not (default value: FALSE)}
+\item{force}{Logical vector of length 1 specifying whether to force the unmapping or not (default
+value: FALSE)}
 }
 \description{
 \code{UnMapDrive} unmaps a logical drive.
@@ -20,4 +19,3 @@ unmapping or not (default value: FALSE)}
 UnMapDrive('Z:')
 
 }
-

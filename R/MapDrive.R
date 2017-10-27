@@ -2,27 +2,23 @@
 #'
 #' @title Map a statistical operation
 #'
-#' @description \code{MapDrive} maps a directory of the microdata repository 
-#' corresponding to a statistical operation with IOE code SurveyCode into the 
-#' logical drive DriveLetter.
+#' @description \code{MapDrive} maps a directory of the microdata repository corresponding to a
+#' statistical operation with IOE code SurveyCode into the logical drive DriveLetter.
 #' 
-#' A password is needed. This password is provided by the methodology unit to 
-#' the head of unit of the statistical operation.
+#' A password is needed. This password is provided by the methodology unit to the head of unit of
+#' the statistical operation.
 #'
-#' @param SurveyCode Character vector of length 1 with the IOE code of the 
-#' statistical operation.
+#' @param SurveyCode Character vector of length 1 with the IOE code of the statistical operation.
 #'
-#' @param DriveLetter Character vector of length 1 specifying the logical 
-#' drive by the common syntax [A-Z]?:.
+#' @param DriveLetter Character vector of length 1 specifying the logical drive by the common syntax
+#' [A-Z]?:.
 #'
 #' @param PassWord Character vector of length 1.
 #'
-#' @return It returns either an error if the mapping is impossible or an 
-#' invisible \code{NULL}.
+#' @return It returns either an error if the mapping is impossible or an invisible \code{NULL}.
 #' 
-#' @details The executable MapDrive.exe must be in the working directory, 
-#' otherwise an error is triggered. This executable is provided by the 
-#' methodology unit.
+#' @details The executable MapDrive.exe must be in the working directory, otherwise an error is
+#' triggered. This executable is provided by the methodology unit.
 #' 
 #' @examples
 #' \dontrun{

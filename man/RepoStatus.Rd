@@ -8,34 +8,30 @@ RepoStatus(SurveyCode, DriveLetter = "Z:", Units = "Mb", Extended = FALSE,
   n = 6L)
 }
 \arguments{
-\item{SurveyCode}{Charcter vector of length 1 with the code of the 
-statistical operation.}
+\item{SurveyCode}{Character vector of length 1 with the code of the statistical operation.}
 
-\item{DriveLetter}{Character vector of length 1 with the letter of the 
-logical drive (default value \code{Z:}).}
+\item{DriveLetter}{Character vector of length 1 with the letter of the logical drive (default
+value \code{Z:}).}
 
-\item{Units}{Character vector length 1 with the information unit measure to 
-use (default value \code{Mb}).}
+\item{Units}{Character vector length 1 with the information unit measure to use (default value
+\code{Mb}).}
 
-\item{Extended}{Logical vector of length 1 expresing whether an extended 
-report muest be produced or not.}
+\item{Extended}{Logical vector of length 1 expresing whether an extended report must be produced
+or not.}
 
-\item{n}{Integer vector of length 1 with the number of files (backwards in 
-time sequence) to report about.}
+\item{n}{Integer vector of length 1 with the number of files (backwards in time sequence) to
+report about.}
 }
 \value{
-It returns a list of \linkS4class{data.table}s for each type of file
-in the repository with columns \code{File} (name of the file), 
-\code{Reference} (time period of reference in the repository notation), 
-\code{Size} (in the specified units), \code{Created} (date of creation in 
-format dd/mm/yyyy) and \code{Last accessed} (date of of last accession in
-format dd/mm/yyyy). If \code{Extended = TRUE}, they also include columns 
-\code{Rows} (the number of rows, except the first line) and \code{Units} 
-(with the number of statistical units in each file).
+It returns a list of \linkS4class{data.table}s for each type of file in the repository
+with columns \code{File} (name of the file), \code{Reference} (time period of reference in the
+repository notation), \code{Size} (in the specified units), \code{Created} (date of creation in 
+format dd/mm/yyyy) and \code{Last accessed} (date of of last accession in format dd/mm/yyyy). If
+\code{Extended = TRUE}, they also include columns \code{Rows} (the number of rows) and
+\code{Units} (with the number of statistical units in each file).
 }
 \description{
-\code{RepoStatus} gives information about the Status of the 
-mapped repository.
+\code{RepoStatus} gives information about the Status of the mapped repository.
 }
 \examples{
 \dontrun{
@@ -43,4 +39,3 @@ RepoStatus('E30183', DriveLetter = 'Z:', Units = 'Mb', Extended = FALSE, n = 6L)
 }
 
 }
-

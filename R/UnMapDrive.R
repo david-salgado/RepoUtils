@@ -4,11 +4,10 @@
 #'
 #' @description \code{UnMapDrive} unmaps a logical drive.
 #'
-#' @param DriveLetter Character vector of length 1 with the letter of the 
-#' logical drive.
+#' @param DriveLetter Character vector of length 1 with the letter of the logical drive.
 #'
-#' @param force Logical vector of length 1 specifying whether to force the
-#' unmapping or not (default value: FALSE)
+#' @param force Logical vector of length 1 specifying whether to force the unmapping or not (default
+#' value: FALSE)
 #'
 #' @examples
 #' UnMapDrive('Z:')

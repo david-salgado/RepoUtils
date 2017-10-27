@@ -7,31 +7,31 @@
 SendReport(SurveyCode, To, n = 6L, Extended = FALSE, Units = "Mb")
 }
 \arguments{
-\item{SurveyCode}{is a character vector of length 1 with the IOE code of the 
-statistical operation.}
+\item{SurveyCode}{is a character vector of length 1 with the IOE code of the statistical
+operation.}
 
-\item{To}{is a character vector of length 1 with the recipient email address.}
+\item{To}{is a character vector with the recipient email addresses.}
 
-\item{n}{is an integer vector of lenght 1 specifying the number of rows to be
-included in the output.}
+\item{n}{is an integer vector of lenght 1 specifying the number of rows to be included in the
+output.}
 
-\item{Extended}{is a logical vector of length 1 specifying whether a more 
-extended output is to be produced.}
+\item{Extended}{is a logical vector of length 1 specifying whether a more extended output is to
+be produced.}
 
-\item{Units}{is a character vector of length 1 specifying the information 
-measure units to be used in the report (default value: 'Mb')}
+\item{Units}{is a character vector of length 1 specifying the information measure units to be
+used in the report (default value: 'Mb')}
 }
 \value{
 It returns the shell response to the execution of smtpmail.exe.
 }
 \description{
-\code{SendReport} sends a report to an email address containing 
-information about the contents of a directory of the microdata repository.
+\code{SendReport} sends a report to an email address containing information about
+the contents of a directory of the microdata repository.
 }
 \details{
-The executable smtpmail.exe must be in the working directory, 
-otherwise an error is triggered. This executable together with a necessary
-dll library are provided by the methodology unit.
+The executable smtpmail.exe must be in the working directory, otherwise an error is
+triggered. This executable together with a necessary dll library are provided by the methodology
+unit.
 }
 \examples{
 \dontrun{
@@ -40,4 +40,3 @@ SendReport('E30183', 'email@example.com', n = 6L, Extended = FALSE, Units = 'Mb'
 
 
 }
-

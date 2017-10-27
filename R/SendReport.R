@@ -2,28 +2,28 @@
 #' 
 #' @title Send a report  
 #' 
-#' @description \code{SendReport} sends a report to an email address containing 
-#' information about the contents of a directory of the microdata repository.
+#' @description \code{SendReport} sends a report to an email address containing information about
+#' the contents of a directory of the microdata repository.
 #' 
-#' @param SurveyCode is a character vector of length 1 with the IOE code of the 
-#' statistical operation.
+#' @param SurveyCode is a character vector of length 1 with the IOE code of the statistical
+#' operation.
 #' 
-#' @param To is a character vector of length 1 with the recipient email address.
+#' @param To is a character vector with the recipient email addresses.
 #' 
-#' @param n is an integer vector of lenght 1 specifying the number of rows to be
-#' included in the output. 
+#' @param n is an integer vector of lenght 1 specifying the number of rows to be included in the
+#' output. 
 #' 
-#' @param Extended is a logical vector of length 1 specifying whether a more 
-#' extended output is to be produced.
+#' @param Extended is a logical vector of length 1 specifying whether a more extended output is to
+#' be produced.
 #' 
-#' @param Units is a character vector of length 1 specifying the information 
-#' measure units to be used in the report (default value: 'Mb')
+#' @param Units is a character vector of length 1 specifying the information measure units to be
+#' used in the report (default value: 'Mb')
 #'
 #' @return It returns the shell response to the execution of smtpmail.exe.
 #'  
-#' @details The executable smtpmail.exe must be in the working directory, 
-#' otherwise an error is triggered. This executable together with a necessary
-#' dll library are provided by the methodology unit.  
+#' @details The executable smtpmail.exe must be in the working directory, otherwise an error is
+#' triggered. This executable together with a necessary dll library are provided by the methodology
+#' unit.  
 #'  
 #'  
 #' @examples

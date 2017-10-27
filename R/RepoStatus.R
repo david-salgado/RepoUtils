@@ -1,31 +1,27 @@
 #' @title Report status of the repository 
 #' 
-#' @description \code{RepoStatus} gives information about the Status of the 
-#' mapped repository.
+#' @description \code{RepoStatus} gives information about the Status of the mapped repository.
 #' 
-#' @param SurveyCode Charcter vector of length 1 with the code of the 
-#' statistical operation.
+#' @param SurveyCode Character vector of length 1 with the code of the statistical operation.
 #'
-#' @param DriveLetter Character vector of length 1 with the letter of the 
-#' logical drive (default value \code{Z:}).
+#' @param DriveLetter Character vector of length 1 with the letter of the logical drive (default
+#' value \code{Z:}).
 #' 
-#' @param Units Character vector length 1 with the information unit measure to 
-#' use (default value \code{Mb}).
+#' @param Units Character vector length 1 with the information unit measure to use (default value
+#' \code{Mb}).
 #' 
-#' @param Extended Logical vector of length 1 expresing whether an extended 
-#' report muest be produced or not.
+#' @param Extended Logical vector of length 1 expresing whether an extended report must be produced
+#' or not.
 #'
-#' @param n Integer vector of length 1 with the number of files (backwards in 
-#' time sequence) to report about. 
+#' @param n Integer vector of length 1 with the number of files (backwards in time sequence) to
+#' report about. 
 #' 
-#' @return It returns a list of \linkS4class{data.table}s for each type of file
-#' in the repository with columns \code{File} (name of the file), 
-#' \code{Reference} (time period of reference in the repository notation), 
-#' \code{Size} (in the specified units), \code{Created} (date of creation in 
-#' format dd/mm/yyyy) and \code{Last accessed} (date of of last accession in
-#' format dd/mm/yyyy). If \code{Extended = TRUE}, they also include columns 
-#' \code{Rows} (the number of rows, except the first line) and \code{Units} 
-#' (with the number of statistical units in each file).
+#' @return It returns a list of \linkS4class{data.table}s for each type of file in the repository
+#' with columns \code{File} (name of the file), \code{Reference} (time period of reference in the
+#' repository notation), \code{Size} (in the specified units), \code{Created} (date of creation in 
+#' format dd/mm/yyyy) and \code{Last accessed} (date of of last accession in format dd/mm/yyyy). If
+#' \code{Extended = TRUE}, they also include columns \code{Rows} (the number of rows) and
+#' \code{Units} (with the number of statistical units in each file).
 #'  
 #' @examples
 #' \dontrun{
