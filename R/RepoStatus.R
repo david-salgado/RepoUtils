@@ -30,7 +30,7 @@
 #' 
 #' @include MappingStatus.R 
 #'
-#' @import RepoTime RepoReadWrite StQ data.table xlsx
+#' @import RepoTime RepoReadWrite StQ data.table openxlsx
 #'   
 #' @export
 RepoStatus <- function(SurveyCode, 
