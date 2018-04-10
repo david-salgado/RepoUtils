@@ -1,6 +1,6 @@
 Package: RepoUtils
 Title: Implementation of tools to map and work with repositories
-Version: 0.1.3
+Version: 0.1.4
 Author: David Salgado
 Maintainer: David Salgado <david.salgado.fernandez@ine.es>
 Description: This package implements tools to map and unmap directories of  
