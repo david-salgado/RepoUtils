@@ -54,7 +54,7 @@ MapDrive <- function(SurveyCode, DriveLetter = 'Z:', PassWord){
                ' is already temporarily mapping the repository for the statistical operation ', 
                SurveyCode, 
                '.\n\n DO NOT FORGET TO UNMAP THE DRIVE BEFORE LEAVING.\n\n'))
-    return(invisible(NULL))
+    return(TRUE)
     
   }
   options(warn = -1)
@@ -102,7 +102,7 @@ MapDrive <- function(SurveyCode, DriveLetter = 'Z:', PassWord){
     cat(paste0('...Drive letter ', 
                DriveLetter, 
                ' is currently under use. Choose another letter.\n\n'))
-    return(invisible(NULL))
+    return(FALSE)
     
   }
   
@@ -111,7 +111,7 @@ MapDrive <- function(SurveyCode, DriveLetter = 'Z:', PassWord){
     cat(paste0('... Invalid password. Enter the valid password for statistical operation ', 
                SurveyCode, 
                '.\n\n'))
-    return(invisible(NULL))
+    return(FALSE)
   }
   
   if (outShell[1] == 'Se ha completado el comando correctamente.') {
@@ -122,7 +122,7 @@ MapDrive <- function(SurveyCode, DriveLetter = 'Z:', PassWord){
                ' is temporarily mapping the repository for the statistical operation ', 
                SurveyCode, 
                '.\n\n DO NOT FORGET TO UNMAP THE DRIVE BEFORE LEAVING.\n\n'))
-    return(invisible(NULL))
+    return(TRUE)
     
   } 
   stop('[MapDrive] Check manually the mapping procedure.')    

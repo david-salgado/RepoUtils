@@ -25,18 +25,18 @@ UnMapDrive <- function(DriveLetter = 'Z:', force = FALSE){
     
     cat('... ok.\n')
     cat(paste0('The logical drive ', DriveLetter, ' has been unmapped.\n\n'))
-    return(invisible(NULL))
+    return(TRUE)
     
   } 
   if (attributes(outShell)['status'] == '2'){
     
     cat(paste0('...The logical drive ', DriveLetter, ' was not mapped.\n\n'))
-    return(invisible(NULL))
+    return(TRUE)
   }
   if (attributes(outShell)['status'] == '65535'){
     
     cat(paste0('... There are open files and/or incomplete searches in the connection with ', DriveLetter,'. The connection cannot be closed.\n\n'))
-    return(invisible(NULL))
+    return(FALSE)
   }
   
   stop('[UnMapDrive] Check manually the mapping procedure.')
