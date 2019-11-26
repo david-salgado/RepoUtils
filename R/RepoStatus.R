@@ -69,7 +69,7 @@ RepoStatus <- function(SurveyCode,
   
   Types <- unlist(lapply(ParsedFileNames, '[', 2))
   Types <- unlist(lapply(strsplit(Types, '_'), '[', 1))
-  ValidTypes <- c('DD', 'FF', 'FD', 'FG', 'FL', 'FT', 
+  ValidTypes <- c('DD', 'FF', 'FD', 'FG', 'FL', 'FT', 'FP', 'FI', 
                   'NombresVariables', 'ParamFL', 'ParamFT')
   indexValidTypes <- (Types %in% ValidTypes )
   Types <- unique(Types[indexValidTypes])
