@@ -157,7 +157,7 @@ RepoStatus <- function(SurveyCode,
 
     for (Type in setdiff(names(output), c('DD', 'NombresVariables'))){
       
-      if (Type %in% c('FF', 'FD', 'FG', 'FL', 'FT')){
+      if (Type %in% c('FF', 'FD', 'FG', 'FL', 'FT', 'FP', 'FI')){
         Rows <- c()
         Units <- c()
         for (i in seq(along = output[[Type]]$File)){
